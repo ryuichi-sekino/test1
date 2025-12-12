@@ -342,7 +342,7 @@ section {
 	color: #fff;	/*文字色*/
 }
 #section2::before {
-	background: url('../images/section2.jpg') no-repeat center center / cover;	/*背景画像の読み込み*/
+	background: url('../images/test3.JPG') no-repeat center center / cover;	/*背景画像の読み込み*/
 }
 
 /*section3の設定*/
@@ -351,7 +351,7 @@ section {
 	color: #fff;	/*文字色*/
 }
 #section3::before {
-	background: url('../images/section3.jpg') no-repeat center center / cover;	/*背景画像の読み込み*/
+	background: url('../images/test1.JPG') no-repeat center center / cover;	/*背景画像の読み込み*/
 }
 
 /*section4の設定*/
@@ -369,10 +369,10 @@ section {
 		background-image: url('../images/section1_origin.JPG');
 	}
 	#section2::before {
-		background-image: url('../images/section2_portrait.jpg');
+		background-image: url('../images/test3.JPG');
 	}
 	#section3::before {
-		background-image: url('../images/section3_portrait.jpg');
+		background-image: url('../images/test1.JPG');
 	}
 
 	}/*追加指定ここまで*/
