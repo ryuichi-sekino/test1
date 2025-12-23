@@ -103,7 +103,7 @@ a:hover {
 header {
 	width: 250px;		/*幅*/
 	padding: 0 2vw;		/*ヘッダー内の余白。上下、左右への順番。*/
-	margin-top: 5vw;	/*ヘッダーの上に空けるスペース*/
+	margin-top: 2vw;	/*ヘッダーの上に空けるスペース*/
 	text-align: center;	/*テキストをセンタリング*/
 }
 
