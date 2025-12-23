@@ -36,7 +36,7 @@
 body * {box-sizing: border-box;}
 html,body {
 	height: 100%;
-	font-size: 13px;	/*基準となるフォントサイズ。*/
+	font-size: 12px;	/*基準となるフォントサイズ。*/
 }
 
 	/*画面幅900px以上の追加指定*/
@@ -56,7 +56,7 @@ body {
 	text-indent: 0.1rem;
 	-webkit-text-size-adjust: none;
 	margin: 0;padding: 0;
-	line-height: 2.5;		/*行間*/
+	line-height: 2;		/*行間*/
 	background: #5a9545;		/*背景色*/
 	color: #fff;			/*文字色*/
 }
@@ -103,7 +103,7 @@ a:hover {
 header {
 	width: 250px;		/*幅*/
 	padding: 0 2vw;		/*ヘッダー内の余白。上下、左右への順番。*/
-	margin-top: 2vw;	/*ヘッダーの上に空けるスペース*/
+	margin-top: 4vw;	/*ヘッダーの上に空けるスペース*/
 	text-align: center;	/*テキストをセンタリング*/
 }
 
@@ -116,7 +116,7 @@ header #logo {
 /*ロゴ下の小文字*/
 header #logo span {
 	display: block;
-	font-size: 0.7rem;	/*文字サイズを70%に*/
+	font-size: 1rem;	/*文字サイズを100%に*/
 }
 
 	/*画面幅900px以上の追加指定*/
@@ -305,7 +305,7 @@ section {
 /*４つのsectionブロックの共通設定*/
 #section1,#section2,#section3,#section4 {
 	min-height: calc(100dvh - 50px);	/*最低の高さ。100dvhは画面の高さ100%のこと。50pxは下のmarginの値。*/
-	margin-bottom: 50px;	/*ボックスの下に空けるスペース*/
+	margin-bottom: 25px;	/*ボックスの下に空けるスペース*/
 	padding: 5vw;			/*ボックス内の余白*/
 }
 	/*画面幅900px以上の追加指定*/
@@ -359,7 +359,7 @@ section {
 	color: #fff;	/*文字色*/
 }
 #section4::before {
-	background: #437737;	/*section4だけは背景画像ではなく、単に背景色だけ指定しました。*/
+	background: #118754;	/*section4だけは背景画像ではなく、単に背景色だけ指定しました。*/
 }
 
 	/*縦向き端末から見た場合に背景画像をチェンジする*/
@@ -431,8 +431,15 @@ footer a {color: inherit;text-decoration: none;}
 /*listブロックを囲む外側のボックス*/
 .list-grid-trimming {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);	/*ここの「4」の数字が横に並べる数です。3列がいいなら(3, 1fr)です。*/
+	grid-template-columns: repeat(2, 1fr);	/*ここの「4」の数字が横に並べる数です。3列がいいなら(3, 1fr)です。*/
 	gap: 1rem;	/*マージン的な数値。サムネイル間を１文字分あけます。*/
+}
+
+@media screen and (min-width:900px) {
+
+	.list-grid-trimming {
+		grid-template-columns: repeat(4, 1fr);
+	}
 }
 
 /*ボックスを正方形にトリミングする為の指定なので変更しない。*/
@@ -510,3 +517,76 @@ footer a {color: inherit;text-decoration: none;}
 		.pc {display: block;}
 
 	}/*画面幅900px以上の追加指定ここまで*/
+
+/* カスタマイズ 
+---------------------------------------------------------------------------*/
+
+.test_pic{
+	height: 150px;
+	width: 70%;
+}
+
+.test_flex{
+	height: auto;
+	display: flex;
+	
+}
+
+.test_flex_content{
+	width: 50vw;
+	margin-right: 5%;
+	padding: auto;
+}
+
+.test_flex_pic{
+	width: 50vw;
+	margin-right:auto;
+	padding:auto;
+	border-radius: 15px;
+}
+
+.container {
+    /* max-width: 600px; */
+    margin: 0 auto;
+    text-align: center;
+}
+
+.horizontal-items {
+    display: flex;
+    overflow-x: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+
+    .item {
+	padding: 0 10px;
+    }
+}
+
+.fade-wrapper {
+  position: relative;
+}
+
+.fade-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
+}
+
+
+
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
