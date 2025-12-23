@@ -116,7 +116,7 @@ header #logo {
 /*ロゴ下の小文字*/
 header #logo span {
 	display: block;
-	font-size: 1rem;	/*文字サイズを100%に*/
+	font-size: 2rem;	/*文字サイズを100%に*/
 }
 
 	/*画面幅900px以上の追加指定*/
