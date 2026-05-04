@@ -10,21 +10,21 @@
 </head>
 <body>
 
-<!-- <header> -->
+<header>
 
 <!-- <h1 id="logo"><img src="images/logo.png" alt="Artist Web Site"><span>Ryuichi</span></h1> -->
-<!-- <h2>Ryuichi Sekino</h2> -->
+<h2>Ryuichi Sekino</h2>
 
 <!--開閉ブロック-->
-<!-- <div id="menubar">
+<div id="menubar">
 
 <nav>
-<ul>
-<li><a href="#">プロフィール</a></li>
-<li><a href="#section2">目標</a></li>
-<li><a href="#section3">名言</a></li> -->
-<!-- <li><a href="#section4">Gallery</a></li> -->
-<!-- </ul>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="index.html#section2">Goals</a></li>
+                <li><a href="index.html#section3">Quotes</a></li>
+            </ul>
 </nav>
 
 <ul class="icons">
@@ -35,12 +35,12 @@
 
 </ul>
 
-</div> -->
-<!--/#menubar-->
+</div> 
+<!-- /#menubar -->
 
-<!-- </header> -->
+</header> 
 
-<div id="header-placeholder"></div>
+<!-- <div id="header-placeholder"></div> -->
 
 <main>
 
@@ -72,42 +72,59 @@
 
 <div class="list-grid-trimming">
 
-<div class="list">
-<a href="images/筋トレ.jpg" data-lightbox="group1" data-title="<h2>筋トレ</h2><br>筋トレは楽しいです<br>食事もしっかりととりっます">
-<img src="images/筋トレ.jpg" alt="">
-</a>
-</div>
+    <div class="list-item">
+        <div class="list-title">筋トレ</div>
+        <div class="list">
+            <a href="images/筋トレ.jpg" data-lightbox="group1" data-title="<h2>筋トレ</h2><br>筋トレは楽しいです<br>食事もしっかりととります">
+                <img src="images/筋トレ.jpg" alt="筋トレ">
+            </a>
+        </div>
+    </div>
 
-<div class="list">
-<a href="images/勉強.jpg" data-lightbox="group1" data-title="タイトルをここに入れます">
-<img src="images/勉強.jpg" alt="">
-</a>
-</div>
+    <div class="list-item">
+        <div class="list-title">勉強</div>
+        <div class="list">
+            <a href="images/勉強.jpg" data-lightbox="group1" data-title="タイトルをここに入れます">
+                <img src="images/勉強.jpg" alt="勉強">
+            </a>
+        </div>
+    </div>
 
-<div class="list">
-<a href="drink.html">
-<img src="images/飲食.jpg" alt="">
-</a>
-</div>
+    <div class="list-item">
+        <div class="list-title">飲食</div>
+        <div class="list">
+            <a href="drink.html">
+                <img src="images/飲食.jpg" alt="飲食">
+            </a>
+        </div>
+    </div>
 
-<div class="list">
-<a href="images/欲しいもの.jpg" data-lightbox="group1" data-title="タイトルをここに入れます">
-<img src="images/欲しいもの.jpg" alt="">
-</a>
-</div>
+    <div class="list-item">
+        <div class="list-title">欲しいもの</div>
+        <div class="list">
+            <a href="images/欲しいもの.jpg" data-lightbox="group1" data-title="タイトルをここに入れます">
+                <img src="images/欲しいもの.jpg" alt="欲しいもの">
+            </a>
+        </div>
+    </div>
 
-<div class="list">
-    <a href="entertainment.html">
-        <img src="images/youtube.jpg" alt="">
-    </a>
-</div>
+    <div class="list-item">
+        <div class="list-title">YouTube</div>
+        <div class="list">
+            <a href="entertainment.html">
+                <img src="images/youtube.jpg" alt="YouTube">
+            </a>
+        </div>
+    </div>
 
-<div class="list">
-<a href="images/思い出.jpeg" data-lightbox="group1" data-title="タイトルをここに入れます">
-<img src="images/思い出.jpeg" alt="">
-</a>
-</div>
-
+    <div class="list-item">
+        <div class="list-title">思い出</div>
+        <div class="list">
+            <a href="images/思い出.jpeg" data-lightbox="group1" data-title="タイトルをここに入れます">
+                <img src="images/思い出.jpeg" alt="思い出">
+            </a>
+        </div>
+    </div>
 
 </div>
 
@@ -250,13 +267,13 @@ html下部で読み込んでいる「lightbox用jsファイルの読み込み」
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
 
 <!--header読み込み-->
-<script>
+<!-- <script>
 fetch('header.html')
   .then(response => response.text())
   .then(data => {
     document.getElementById('header-placeholder').innerHTML = data;
   });
-</script>
+</script> -->
 
 <!--このテンプレート専用のスクリプト-->
 <script src="js/main.js"></script>
