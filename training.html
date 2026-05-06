@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Training</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="筋トレ管理アプリ">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="apple-touch-icon" href="images/アイコン.jpeg">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header>
+  <h2>Ryuichi Sekino</h2>
+
+  <div id="menubar">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="index.html#section2">Goals</a></li>
+        <li><a href="index.html#section3">Quotes</a></li>
+        <li><a href="training.html">Training</a></li>
+      </ul>
+    </nav>
+
+    <ul class="icons">
+      <li><a href="https://line.me/ti/p/kKjSzzldcK"><i class="fab fa-line"></i></a></li>
+      <li><a href="https://www.instagram.com/riyuichi66"><i class="fab fa-instagram"></i></a></li>
+      <li><a href="https://x.com/ryuichi_se"><i class="fa-brands fa-x-twitter"></i></a></li>
+      <li><a href="https://youtube.com/channel/UCuIGTqvoOdshTMILa3l058w"><i class="fab fa-youtube"></i></a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<section id="section2">
+  <h2>Training Records</h2>
+
+  <div class="filter-area">
+    <select id="yearFilter">
+      <option value="">全年</option>
+    </select>
+
+    <select id="monthFilter">
+      <option value="">全月</option>
+    </select>
+
+    <select id="partFilter">
+      <option value="">全部位</option>
+      <option value="胸">胸</option>
+      <option value="肩">肩</option>
+      <option value="腕">腕</option>
+      <option value="背中">背中</option>
+    </select>
+
+    <select id="menuFilter">
+      <option value="">全種目</option>
+    </select>
+  </div>
+
+  <div class="table-wrapper">
+    <table id="recordTable">
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>部位</th>
+          <th>種目</th>
+          <th>重量</th>
+          <th>回数</th>
+          <th>1RM</th>
+          <th class="delete-col hidden">削除</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+</main>
+
+<!-- 左下 -->
+<div class="left-floating">
+  <button id="graphBtn">
+    <i class="fa-solid fa-chart-line"></i> 成長記録
+  </button>
+</div>
+
+<!-- 右下 -->
+<div class="right-floating">
+  <button id="addBtn">
+    <i class="fa-solid fa-plus"></i> 追加
+  </button>
+
+  <button id="deleteModeBtn">
+    <i class="fa-solid fa-trash"></i> 削除
+  </button>
+</div>
+
+<!-- 記録追加モーダル -->
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <h3>記録追加</h3>
+
+    <div class="form-row">
+      <label>日付</label>
+      <input type="date" id="dateInput">
+    </div>
+
+    <div class="form-row">
+      <label>部位</label>
+      <select id="partInput">
+        <option value="胸">胸</option>
+        <option value="肩">肩</option>
+        <option value="腕">腕</option>
+        <option value="背中">背中</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>種目</label>
+      <select id="menuInput"></select>
+    </div>
+
+    <div class="form-row">
+      <label>重量</label>
+      <input type="number" id="weightInput" placeholder="kg">
+    </div>
+
+    <div class="form-row">
+      <label>回数</label>
+      <input type="number" id="repsInput" placeholder="rep">
+    </div>
+
+    <div class="modal-buttons">
+      <button id="saveBtn" class="primary-btn">保存</button>
+      <button id="closeBtn" class="secondary-btn">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<!-- 成長記録モーダル -->
+<div id="graphModal" class="modal hidden">
+  <div class="modal-content graph-content">
+    <h3>成長記録 RM推移</h3>
+
+    <div class="filter-area">
+      <select id="graphYear"></select>
+      <select id="graphMonth"></select>
+      <select id="graphPart"></select>
+      <select id="graphMenu"></select>
+    </div>
+
+    <div style="height:300px;">
+      <canvas id="growthChart"></canvas>
+    </div>
+
+    <button id="graphCloseBtn" class="secondary-btn">閉じる</button>
+  </div>
+</div>
+
+<footer>
+  <small>Copyright&copy; <a href="index.html">Training App</a></small>
+</footer>
+
+<div class="pagetop">
+  <a href="#"><i class="fas fa-angle-double-up"></i></a>
+</div>
+
+<div id="menubar_hdr">
+  <span></span><span></span><span></span>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
+
+<script src="js/main.js"></script>
+<script src="js/training.js"></script>
+
+</body>
+</html>

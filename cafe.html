@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Food and Drink</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ここにサイト説明を入れます">
+<link rel="stylesheet" href="css/style.css">
+<link rel="apple-touch-icon" href="images/アイコン.jpeg">
+</head>
+<body>
+
+<header>
+
+<!-- <h1 id="logo"><img src="images/logo.png" alt="Artist Web Site"><span>Ryuichi</span></h1> -->
+<h2>Ryuichi Sekino</h2>
+
+<!--開閉ブロック-->
+<div id="menubar">
+
+<nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="index.html#section2">Goals</a></li>
+                <li><a href="index.html#section3">Quotes</a></li>
+            </ul>
+</nav>
+
+<ul class="icons">
+<li><a href="https://line.me/ti/p/kKjSzzldcK"><i class="fab fa-line"></i></a></li>
+<li><a href="https://www.instagram.com/riyuichi66?igsh=c2RzZzZuOTkya29m&utm_source=qr"><i class="fab fa-instagram"></i></a></li>
+<li><a href="https://x.com/ryuichi_se?s=21"><i class="fa-brands fa-x-twitter"></i></a></li>
+<li><a href="https://youtube.com/channel/UCuIGTqvoOdshTMILa3l058w?si=1QKPY9zSFsyXlTSW"><i class="fab fa-youtube"></i></a></li>
+
+</ul>
+
+</div> 
+<!-- /#menubar -->
+
+</header> 
+
+<!-- <div id="header-placeholder"></div> -->
+
+<main>
+
+<!-- ここからsection2 -->
+<section id="section2" class="section">
+
+<h2>Cafe</h2>
+
+<div class="list-grid-trimming">
+
+    <div class="list-item">
+            <div class="list-title">ランブル</div>
+            <div class="list">
+                <a href="images/cafe1.JPG" data-lightbox="group1" data-title="<h2>ランブル</h2><br>ランブルは面白いです">
+                    <img src="images/cafe1.JPG" alt="ランブル">
+                </a>
+            </div>
+        </div>
+
+        
+        <div class="list-item">
+            <div class="list-title">キーフェルグローバル</div>
+            <div class="list">
+                <a href="images/cafe4.JPG" data-lightbox="group1" data-title="<h2>キーフェルグローバルクラブ</h2><br>キーフェルグローバルクラブは面白いです">
+                    <img src="images/cafe4.JPG" alt="キーフェルグローバルクラブ">
+                </a>
+            </div>
+        </div>
+
+        
+        <div class="list-item">
+            <div class="list-title">くぐつ草</div>
+            <div class="list">
+                <a href="images/cafe2.jpeg" data-lightbox="group1" data-title="<h2>くぐつ草</h2><br>くぐつ草は面白いです">
+                    <img src="images/cafe2.jpeg" alt="くぐつ草">
+                </a>
+            </div>
+        </div>
+
+        <div class="list-item">
+            <div class="list-title">古城</div>
+            <div class="list">
+                <a href="images/cafe3.JPG" data-lightbox="group1" data-title="チェンソーマン">
+                    <img src="images/cafe3.JPG" alt="チェンソーマン">
+                </a>
+            </div>
+        </div>
+
+</div>
+
+<!-- <div class="list">
+<a href="images/anime7.JPG" data-lightbox="group1" data-title="4月は君の嘘">
+<img src="images/anime7.JPG" alt="">
+</a>
+</div> -->
+
+</section>
+
+</main>
+
+<footer>
+<small>Copyright&copy; <a href="index.html">Artist Web Site</a> All Rights Reserved.</small>
+<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+</footer>
+
+<!--ページの上部へ戻るボタン-->
+<div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
+
+<!--開閉ボタン（ハンバーガーアイコン）-->
+<div id="menubar_hdr">
+<span></span><span></span><span></span>
+</div>
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--lightbox用jsファイルの読み込み-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
+
+<!--header読み込み-->
+<script>
+fetch('header.html')
+.then(response => response.text())
+.then(data => {
+    document.getElementById('header-placeholder').innerHTML = data;
+});
+</script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="js/main.js"></script>
+
+</body>
+</html>
