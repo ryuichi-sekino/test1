@@ -139,6 +139,12 @@ function renderTable() {
 
   tbody.innerHTML = "";
 
+  // 削除ヘッダー表示切替
+  const deleteHeader = document.querySelector("#recordTable th.delete-col");
+  if (deleteHeader) {
+    deleteHeader.classList.toggle("hidden", !deleteMode);
+  }
+
   let records = getRecords();
 
   const year = document.getElementById("yearFilter")?.value || "";

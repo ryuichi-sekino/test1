@@ -227,9 +227,42 @@ $(document).ready(function () {
   checkVisibility();
 });
 
-  //header読み込み
-// fetch('header.html')
-//   .then(response => response.text())
-//   .then(data => {
-//     document.getElementById('header-placeholder').innerHTML = data;
-//   });
+const quotes = [
+  "量をやっていない人に\n質を語る権利はない",
+
+  "死ぬ気でやれよ\n死なないから",
+
+  "「負けない強さ」より\n「立ち直る早さ」",
+
+  "今日逃げたら明日は\nもっと大きな勇気が必要になる",
+
+  "型にハマるな自分を壊せ",
+
+  "「何が正しいか」を探す人は\nいつもイライラしている\n「何が楽しいか」を探す人は\nいつもニコニコしている",
+
+  "死を恐れるのではなく\n意味のない生を恐れよ",
+
+  "誰にも理解されない\n夜をいくつも超えて\nそれでも沈まなかった\nものにしか\n見えない景色がある",
+
+  "やれる可能性があるやつが\n努力しないのを見ると\n胸倉つかんで\n「俺と変われ」と言いたくなる"
+];
+
+const quoteText = document.getElementById("quote-text");
+let currentIndex = 0;
+
+function showQuote() {
+  quoteText.classList.remove("show");
+
+  setTimeout(() => {
+    quoteText.textContent = quotes[currentIndex];
+    quoteText.classList.add("show");
+
+    currentIndex = (currentIndex + 1) % quotes.length;
+  }, 1000);
+}
+
+// 初回表示
+showQuote();
+
+// 4秒ごと切り替え
+setInterval(showQuote, 6000);
