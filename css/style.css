@@ -429,73 +429,88 @@ footer a {color: inherit;text-decoration: none;}
 /*list-grid（gallery.htmlでサムネイルを表示している部分の設定です）
 ---------------------------------------------------------------------------*/
 /*listブロックを囲む外側のボックス*/
+/* list-grid */
 .list-grid-trimming {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 1rem;
 }
 
-/* 各アイテム全体 */
+/* 各カード */
 .list-grid-trimming .list-item {
-	display: flex;
-	flex-direction: column;
+	display: block;
 }
 
-/* テキスト（画像の上） */
-.list-grid-trimming .list-title {
-	font-size: 14px;
-	font-weight: bold;
-	margin-bottom: 8px;
-	line-height: 1.4;
-}
-
-/* 画像エリアのみ正方形化 */
+/* 画像エリア */
 .list-grid-trimming .list {
 	position: relative;
 	overflow: hidden;
 	height: 0;
 	padding-top: 100%;
-	border-radius: 8px; /* 任意：少し角丸 */
+	border-radius: 12px;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
+/* リンク全体 */
 .list-grid-trimming .list a {
 	display: block;
 	position: absolute;
-	left: 0;
-	top: 0;
+	inset: 0;
 	width: 100%;
 	height: 100%;
+	text-decoration: none;
 }
 
+/* 画像 */
 .list-grid-trimming .list img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	object-position: center;
-	transition: 0.5s;
+	transition: transform 0.5s ease;
 }
 
 /* hover */
-.list-grid-trimming .list img:hover {
-	transform: scale(1.1);
-	filter: contrast(1.3);
+.list-grid-trimming .list:hover img {
+	transform: scale(1.08);
+	filter: brightness(0.9);
 }
 
+/* タイトル帯 */
+.list-grid-trimming .list-title {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 26%; /* 下1/4くらい */
 
-/* iPhone / スマホ */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background: rgba(60, 60, 60, 0.55); /* 半透明グレー */
+	backdrop-filter: blur(4px);
+
+	font-size: 1rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	color: #fff;
+
+	padding: 0 10px;
+	text-align: center;
+	line-height: 1.4;
+}
+
+/* スマホ */
 @media screen and (max-width: 768px) {
 	.list-grid-trimming {
 		grid-template-columns: repeat(2, 1fr);
-		gap: 1.4rem; /* 少し広げる */
+		gap: 1.2rem;
 	}
 
 	.list-grid-trimming .list-title {
-		font-size: 13px;
-		margin-bottom: 10px;
-	}
-
-	.list-grid-trimming .list-item {
-		margin-bottom: 8px; /* 各カード下にも少し余白 */
+		font-size: 0.9rem;
+		height: 28%;
 	}
 }
 
@@ -702,6 +717,32 @@ th, td {
 	transform: translateY(0);
 }
 
+/* 名言と著者をまとめる */
+.quote-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 18px;
+}
+
+/* 著者名 */
+.quote-author {
+	font-size: clamp(1rem, 1.6vw, 1.4rem);
+	font-weight: 500;
+	letter-spacing: 0.08em;
+	opacity: 0;
+	transform: translateY(15px);
+	transition: opacity 1.5s ease 0.4s, transform 1.5s ease 0.4s;
+	text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+	color: rgba(255,255,255,0.88);
+	margin: 0;
+}
+
+.quote-author.show {
+	opacity: 1;
+	transform: translateY(0);
+}
+
 .modal-buttons {
 	display: flex;
 	gap: 10px;
@@ -740,6 +781,8 @@ th, td {
   max-height: 90vh;
   overflow-y: auto;
 }
+
+
 
 /* プロフィールページ用（最小限） */
 .profile-container {
@@ -973,4 +1016,60 @@ th, td {
 /* 支出追加ボタン余白 */
 #modal .modal-buttons {
   margin-top: 28px;
+}
+
+/* =========================
+   Lightbox画像を正方形固定表示
+========================= */
+
+/* 画像全体を囲う枠 */
+.lightbox .lb-image {
+	width: 420px !important;
+	height: 420px !important;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 14px;
+	border: none !important;
+	box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+
+/* 外枠サイズも固定 */
+.lb-outerContainer {
+	width: 420px !important;
+	height: 420px !important;
+	border-radius: 14px;
+	background: transparent !important;
+}
+
+/* コンテナ中央寄せ */
+.lb-container {
+	padding: 0 !important;
+}
+
+/* キャプション余白調整 */
+.lb-dataContainer {
+	width: 420px !important;
+	margin: 12px auto 0;
+}
+
+/* スマホ */
+@media screen and (max-width: 768px) {
+	.lightbox .lb-image {
+		width: 82vw !important;
+		height: 82vw !important;
+		max-width: 320px;
+		max-height: 320px;
+	}
+
+	.lb-outerContainer {
+		width: 82vw !important;
+		height: 82vw !important;
+		max-width: 320px;
+		max-height: 320px;
+	}
+
+	.lb-dataContainer {
+		width: 82vw !important;
+		max-width: 320px;
+	}
 }

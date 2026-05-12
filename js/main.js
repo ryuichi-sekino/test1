@@ -228,34 +228,48 @@ $(document).ready(function () {
 });
 
 const quotes = [
-  "量をやっていない人に\n質を語る権利はない",
+ {
+    text: "見せてやれ、底力。",
+    author: "カロリーメイト"
+  },
+  {
+    text: "量をやっていない人に\n質を語る権利はない",
+    author: "本田 圭佑"
+  },
+  {
+    text: "死ぬ気でやれよ\n死なないから",
+    author: "杉村 太郎"
+  },
+{
+    text: "今日逃げたら明日は\nもっと大きな勇気が必要になる",
+    author: "二宮 修二"
+  },
+  {
+    text: "「負けない強さ」より\n「立ち直る早さ」",
+    author: "作者不詳"
+  },
+  {
+    text: "型にハマるな自分を壊せ",
+    author: "岡本 太郎"
+  },
 
-  "死ぬ気でやれよ\n死なないから",
-
-  "「負けない強さ」より\n「立ち直る早さ」",
-
-  "今日逃げたら明日は\nもっと大きな勇気が必要になる",
-
-  "型にハマるな自分を壊せ",
-
-  "「何が正しいか」を探す人は\nいつもイライラしている\n「何が楽しいか」を探す人は\nいつもニコニコしている",
-
-  "死を恐れるのではなく\n意味のない生を恐れよ",
-
-  "誰にも理解されない\n夜をいくつも超えて\nそれでも沈まなかった\nものにしか\n見えない景色がある",
-
-  "やれる可能性があるやつが\n努力しないのを見ると\n胸倉つかんで\n「俺と変われ」と言いたくなる"
 ];
 
 const quoteText = document.getElementById("quote-text");
+const quoteAuthor = document.getElementById("quote-author");
+
 let currentIndex = 0;
 
 function showQuote() {
   quoteText.classList.remove("show");
+  quoteAuthor.classList.remove("show");
 
   setTimeout(() => {
-    quoteText.textContent = quotes[currentIndex];
+    quoteText.textContent = quotes[currentIndex].text;
+    quoteAuthor.textContent = `${quotes[currentIndex].author}`;
+
     quoteText.classList.add("show");
+    quoteAuthor.classList.add("show");
 
     currentIndex = (currentIndex + 1) % quotes.length;
   }, 1000);
@@ -264,5 +278,5 @@ function showQuote() {
 // 初回表示
 showQuote();
 
-// 4秒ごと切り替え
+// 6秒ごと切り替え
 setInterval(showQuote, 6000);
