@@ -1057,20 +1057,20 @@ th, td {
 	.lightbox .lb-image {
 		width: 85vw !important;
 		height: 82vw !important;
-		max-width: 350px;
-		max-height: 320px;
+		max-width: 400px;
+		max-height: 350px;
 	}
 
 	.lb-outerContainer {
-		width: 85vw !important;
+		width: 90vw !important;
 		height: 82vw !important;
-		max-width: 350px;
-		max-height: 320px;
+		max-width: 400px;
+		max-height: 350px;
 	}
 
 	.lb-dataContainer {
-		width: 85vw !important;
-		max-width: 350px;
+		width: 90vw !important;
+		max-width: 400px;
 	}
 }
 
@@ -1665,6 +1665,6 @@ th, td {
 /* --- Apple Music専用の個別調整 --- */
 .popup-iframe.music-player {
     aspect-ratio: auto;       /* 音楽プレイヤーは16:9にしない */
-    height: 300px;            /* プレイヤーが見やすい最適な高さに固定 */
+    height: 480px;            /* プレイヤーが見やすい最適な高さに固定 */
     border-radius: 10px;      /* アップル公式に近い丸みに調整 */
 }
