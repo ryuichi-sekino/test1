@@ -222,6 +222,16 @@ function initDateFilters() {
       <option value="背中">背中</option>
     `;
   }
+
+  // デフォルト値を現在年月に設定
+  const now = new Date();
+  const currentYearStr = String(now.getFullYear());
+  const currentMonthStr = String(now.getMonth() + 1).padStart(2, "0");
+
+  if (yFilter) yFilter.value = currentYearStr;
+  if (mFilter) mFilter.value = currentMonthStr;
+  if (gYear) gYear.value = currentYearStr;
+  if (gMonth) gMonth.value = currentMonthStr;
 }
 
 /* ===========================================================================
@@ -293,11 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderMenu("menuFilter", "胸");
   renderMenu("graphMenu", "胸");
 
-  // メイン画面のデフォルトフィルター値を今年に固定設定
-  const now = new Date();
-  if (document.getElementById("yearFilter")) {
-    document.getElementById("yearFilter").value = now.getFullYear();
-  }
   renderTable();
 
   // データ追加モーダル開閉

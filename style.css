@@ -1,0 +1,1651 @@
+@charset "utf-8";
+
+
+/*Google Fontsの読み込み
+---------------------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100..900&display=swap');
+
+/*Font Awesomeの読み込み
+---------------------------------------------------------------------------*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
+
+/*lightbox.cssの読み込み
+---------------------------------------------------------------------------*/
+@import url(https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.css);
+
+
+/*opa1のキーフレーム設定
+---------------------------------------------------------------------------*/
+@keyframes opa1 {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+
+/*animation1のキーフレーム設定（開閉ブロックのアニメーションに使用）
+---------------------------------------------------------------------------*/
+@keyframes animation1 {
+	0% {left: -200px;}
+	100% {left: 0px;}
+}
+
+
+/*全体の設定
+---------------------------------------------------------------------------*/
+body * {box-sizing: border-box;}
+html,body {
+	height: 100%;
+	font-size: 13px;	/*基準となるフォントサイズ。*/
+}
+
+	/*画面幅900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+
+	html, body {
+		font-size: 14px;	/*基準となるフォントサイズ。*/
+	}
+
+	}/*追加指定ここまで*/
+
+body {
+	font-family: "M PLUS 1", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
+	font-weight: 300;
+	font-optical-sizing: auto;
+	letter-spacing: 0.1rem;
+	text-indent: 0.1rem;
+	-webkit-text-size-adjust: none;
+	margin: 0;padding: 0;
+	line-height: 2.5;		/*行間*/
+	background: #5a9545;		/*背景色*/
+	color: #fff;			/*文字色*/
+}
+
+/*リセット*/
+figure {margin: 0;}
+dd {margin: 0;}
+nav,ul,li {margin: 0;padding: 0;}
+nav ul {list-style: none;}
+h1,h2,h3,h4 {font-weight: 400;}
+
+/*table全般の設定*/
+table {border-collapse:collapse;}
+
+/*画像全般の設定*/
+img {border: none;max-width: 100%;height: auto;vertical-align: middle;}
+
+/*videoタグ*/
+video {max-width: 100%;}
+
+/*iframeタグ*/
+iframe {width: 100%;}
+
+/*他*/
+input {font-size: 1rem;}
+strong {font-weight: 500;}
+
+
+/*リンクテキスト全般の設定
+---------------------------------------------------------------------------*/
+a {
+	color: #fff;	/*文字色*/
+	transition: 0.3s;	/*hoverまでにかける時間。0.3秒。*/
+}
+
+/*マウスオン時*/
+a:hover {
+	text-decoration: none;
+}
+
+
+/*header（ロゴとメニューが入ったブロック）
+---------------------------------------------------------------------------*/
+header {
+	width: 250px;		/*幅*/
+	padding: 0 2vw;		/*ヘッダー内の余白。上下、左右への順番。*/
+	margin-top: 5vw;	/*ヘッダーの上に空けるスペース*/
+	text-align: center;	/*テキストをセンタリング*/
+}
+
+/*ロゴ*/
+header #logo img {display: block;}
+header #logo {
+	padding: 0;margin: 0;
+}
+
+/*ロゴ下の小文字*/
+header #logo span {
+	display: block;
+	font-size: 0.7rem;	/*文字サイズを70%に*/
+}
+
+	/*画面幅900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+
+	header {
+		position: fixed;	/*スクロールしても動かないようにする設定*/
+		left: 0px;
+		top: 0px;
+	}
+
+	}/*追加指定ここまで*/
+
+	/*画面の高さが500px以下の追加指定*/
+	@media screen and (max-height:500px) {
+
+	header {
+		position: absolute;	/*メニューが切れて見えなくならないように、fixedを中止する*/
+	}
+
+	}/*追加指定ここまで*/
+
+
+/*mainブロック（右側のsectionを囲むブロック）
+---------------------------------------------------------------------------*/
+
+	/*画面幅900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+
+	main {
+		margin-left: 250px;	/*headerのwidthに合わせる*/
+	}
+
+	}/*追加指定ここまで*/
+
+
+/*main内のh2*/
+main h2 {
+	font-size: 2.0rem;	/*文字サイズを2.5倍*/
+	text-align: center;
+}
+
+/*main内のh3*/
+main h3 {
+	font-size: 1.5rem;	/*文字サイズを1.5倍*/
+}
+
+
+
+/*メニューブロック初期設定
+---------------------------------------------------------------------------*/
+/*メニューをデフォルトで非表示*/
+#menubar {display: none;}
+
+/*上で非表示にしたメニューを表示させる為の設定*/
+.large-screen #menubar {display: block;}
+.small-screen #menubar.display-block {display: block;}
+
+/*3本バーをデフォルトで非表示*/
+#menubar_hdr.display-none {display: none;}
+
+
+/*メニュー
+---------------------------------------------------------------------------*/
+/*メニューブロック全体*/
+#menubar ul {
+	margin: 3rem 0;	/*メニューブロックの外側に空けるスペース*/
+}
+
+/*メニュー一個あたり*/
+#menubar nav a {
+	text-decoration: none;display: block;
+	background: rgba(0,0,0,0.5);	/*背景色。0,0,0は黒のことで0.5は色が50%出た状態。*/
+	border: 1px solid rgba(255,255,255,0.3);	/*枠線の幅、線種、色。255,255,255は白のことで0.3は色が30%出た状態。*/
+	color: #fff;		/*文字色*/
+	padding: 0.5rem;	/*余白*/
+	margin: 0.5rem 0;	/*メニューの外側に空けるスペース。上下、左右。*/
+	border-radius: 5px;	/*角を丸くする指定*/
+}
+
+/*マウスオン次*/
+#menubar nav a:hover {
+	background: rgba(0,0,0,0.9);	/*背景色。透明度を変更して濃くします。*/
+	border: 1px solid rgba(255,255,255,0.9);	/*枠線。透明度を変更して濃くします。*/
+}
+
+/*900px以下画面でのメニュー
+---------------------------------------------------------------------------*/
+/*メニューブロック全体*/
+.small-screen #menubar.display-block {
+	position: fixed;overflow: auto;z-index: 100;
+	left: 0px;top: 0px;
+	width: 100%;
+	height: 100%;
+	padding-top: 80px;
+	background: rgba(0,0,0,0.8);		/*背景色*/
+	animation: animation1 0.2s both;	/*animation1を実行する。0.2sは0.2秒の事。*/
+}
+.small-screen #menubar ul {
+	margin: 3rem;	/*メニューブロックの外側に空けるスペース*/
+}
+
+
+/*３本バー（ハンバーガー）アイコン設定
+---------------------------------------------------------------------------*/
+/*３本バーを囲むブロック*/
+#menubar_hdr {
+	animation: opa1 0s 0.2s both;
+	position: fixed;z-index: 101;
+	cursor: pointer;
+	right: 30px;			/*右からの配置場所指定*/
+	top: 30px;				/*上からの配置場所指定*/
+	padding: 16px 14px;		/*上下、左右への余白*/
+	width: 46px;			/*幅（３本バーが出ている場合の幅になります）*/
+	height: 46px;			/*高さ*/
+	display: flex;					/*flexボックスを使う指定*/
+	flex-direction: column;			/*子要素（３本バー）部分。flexはデフォルトで横並びになるので、それを縦並びに変更。*/
+	justify-content: space-between;	/*並びかたの種類の指定*/
+	background: #d30c44;	/*背景色*/
+}
+
+/*バー１本あたりの設定*/
+#menubar_hdr span {
+	display: block;
+	transition: 0.3s;	/*アニメーションにかける時間。0.3秒。*/
+	border-top: 1.5px solid #fff;	/*線の幅、線種、色*/
+}
+
+/*×印が出ている状態の設定。※１本目および２本目のバーの共通設定。*/
+#menubar_hdr.ham span:nth-of-type(1),
+#menubar_hdr.ham span:nth-of-type(3) {
+	transform-origin: center center;	/*変形の起点。センターに。*/
+	width: 20px;						/*バーの幅*/
+}
+
+/*×印が出ている状態の設定。※１本目のバー。*/
+#menubar_hdr.ham span:nth-of-type(1){
+	transform: rotate(45deg) translate(3.8px, 5px);	/*回転45°と、X軸Y軸への移動距離の指定*/
+}
+
+/*×印が出ている状態の設定。※３本目のバー。*/
+#menubar_hdr.ham span:nth-of-type(3){
+	transform: rotate(-45deg) translate(3.8px, -5px);	/*回転-45°と、X軸Y軸への移動距離の指定*/
+}
+
+/*×印が出ている状態の設定。※２本目のバー。*/
+#menubar_hdr.ham span:nth-of-type(2){
+	display: none;	/*２本目は使わないので非表示にする*/
+}
+
+
+/*メニュー内にあるソーシャルメディアのアイコン
+---------------------------------------------------------------------------*/
+ul.icons {
+	list-style: none;
+	margin: 0;padding: 0;
+	display: flex;
+	justify-content: center;
+}
+ul.icons li {
+	margin-right: 10px;	/*アイコン同士の余白*/
+}
+ul.icons i {
+	font-size: 20px;	/*Font Awesomeのアイコンサイズ*/
+}
+
+
+/*section
+---------------------------------------------------------------------------*/
+/*フェード設定*/
+.section::before {
+	opacity: 0; /* 初期状態では非表示 */
+	transition: opacity 1s; /* 1秒かけてフェードイン/フェードアウト */
+}
+.section.active::before {
+	opacity: 1; /* フェードイン状態 */
+}
+.section.inactive::before {
+	opacity: 0; /* フェードアウト状態 */
+}
+
+/*section要素*/
+section {
+	padding: 2vw 5vw;	/*ボックス内の余白。上下、左右への順番。*/
+}
+
+/*４つのsectionブロックの共通設定*/
+#section1,#section2,#section3,#section4 {
+	min-height: calc(100dvh - 50px);	/*最低の高さ。100dvhは画面の高さ100%のこと。50pxは下のmarginの値。*/
+	margin-bottom: 50px;	/*ボックスの下に空けるスペース*/
+	padding: 5vw;			/*ボックス内の余白*/
+}
+	/*画面幅900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+
+	#section1,#section2,#section3,#section4 {
+		border-radius: 3vw 0 0 3vw;	/*角丸の指定。左上、右上、右下、左下への順番。*/
+	}
+
+	}/*追加指定ここまで*/
+
+
+/*背景画像を置く為の設定*/
+#section1::before,#section2::before,#section3::before,#section4::before {
+	content: '';
+	position: fixed;z-index: -1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/*section1の設定*/
+#section1 {
+	color: #fff;	/*文字色*/
+}
+#section1::before {
+	background: url('../images/top1_wide.jpg') no-repeat center center / cover;	/*背景画像の読み込み*/
+}
+
+/*section2の設定*/
+#section2 {
+	background-color: rgba(59,96,94,0.6);	/*背景色。３つ目までの数字はrgbでの色指定。最後の小数点は透明度。*/
+	color: #fff;	/*文字色*/
+}
+#section2::before {
+	background: url('../images/top2_wide.jpg') no-repeat center center / cover;	/*背景画像の読み込み*/
+}
+
+/*section3の設定*/
+#section3 {
+	background-color: rgba(100,88,79,0.6);	/*背景色。３つ目までの数字はrgbでの色指定。最後の小数点は透明度。*/
+	color: #fff;	/*文字色*/
+}
+#section3::before {
+	background: url('../images/section3.jpg') no-repeat center center / cover;	/*背景画像の読み込み*/
+}
+
+/*section4の設定*/
+#section4 {
+	color: #fff;	/*文字色*/
+}
+#section4::before {
+	background: #437737;	/*section4だけは背景画像ではなく、単に背景色だけ指定しました。*/
+}
+
+	/*縦向き端末から見た場合に背景画像をチェンジする*/
+	@media (orientation: portrait) {
+
+	#section1::before {
+		background-image: url('../images/top1.jpg');
+	}
+	#section2::before {
+		background-image: url('../images/top2.jpg');
+	}
+	#section3::before {
+		background-image: url('../images/section3_portrait.jpg');
+	}
+
+	}/*追加指定ここまで*/
+
+/*背景色を入れない場合（画像だけを表示したい場合）*/
+.no-bgcolor {background-color: transparent !important;}
+
+
+/*フッター設定
+---------------------------------------------------------------------------*/
+footer small {font-size: 100%;}
+footer {
+	font-size: 0.8rem;
+	text-align: center;		/*内容をセンタリング*/
+	padding-bottom: 1rem;
+}
+
+/*リンクテキスト*/
+footer a {color: inherit;text-decoration: none;}
+
+
+/*お知らせブロック
+---------------------------------------------------------------------------*/
+/*記事の下に空ける余白*/
+.new dd {
+	padding-bottom: 1rem;
+}
+
+/*ブロック内のspan。日付の横のアイコン的な部分の共通設定*/
+.new dt span {
+	display: inline-block;
+	text-align: center;
+	line-height: 1.8;		/*行間（アイコンの高さ）*/
+	border-radius: 3px;		/*角を丸くする指定*/
+	padding: 0 0.5rem;		/*上下、左右へのブロック内の余白*/
+	width: 6rem;			/*幅。６文字分。*/
+	transform: scale(0.8);	/*80%のサイズに縮小*/
+	background: rgba(255,255,255,0.8);		/*背景色*/
+	color: #333;			/*文字色*/
+}
+
+	/*画面幅700px以上の追加指定*/
+	@media screen and (min-width:700px) {
+
+	/*ブロック全体*/
+	.new {
+		display: grid;	/*gridを使う指定*/
+		grid-template-columns: auto 1fr;	/*横並びの指定。日付とアイコン部分の幅は自動で、内容が入るブロックは残り幅一杯とる。*/
+	}
+
+	}/*追加指定ここまで*/
+
+
+/*list-grid（gallery.htmlでサムネイルを表示している部分の設定です）
+---------------------------------------------------------------------------*/
+/*listブロックを囲む外側のボックス*/
+/* list-grid */
+.list-grid-trimming {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
+}
+
+/* 各カード */
+.list-grid-trimming .list-item {
+	display: block;
+}
+
+/* 画像エリア */
+.list-grid-trimming .list {
+	position: relative;
+	overflow: hidden;
+	height: 0;
+	padding-top: 100%;
+	border-radius: 12px;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* リンク全体 */
+.list-grid-trimming .list a {
+	display: block;
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+}
+
+/* 画像 */
+.list-grid-trimming .list img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	transition: transform 0.5s ease;
+}
+
+/* hover */
+.list-grid-trimming .list:hover img {
+	transform: scale(1.08);
+	filter: brightness(0.9);
+}
+
+/* タイトル帯 */
+.list-grid-trimming .list-title {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 26%; /* 下1/4くらい */
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background: rgba(60, 60, 60, 0.55); /* 半透明グレー */
+	backdrop-filter: blur(4px);
+
+	font-size: 1rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	color: #fff;
+
+	padding: 0 10px;
+	text-align: center;
+	line-height: 1.4;
+}
+
+/* スマホ */
+@media screen and (max-width: 768px) {
+	.list-grid-trimming {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.2rem;
+	}
+
+	.list-grid-trimming .list-title {
+		font-size: 0.9rem;
+		height: 28%;
+	}
+}
+
+
+/*PAGE TOP（↑）設定
+---------------------------------------------------------------------------*/
+.pagetop-show {display: block;}
+
+/*ボタンの設定*/
+.pagetop a {
+	display: block;text-decoration: none;text-align: center;z-index: 99;
+	animation: opa1 0.2s 0.2s both;	/*一瞬ボタンが出ちゃうのを隠す為の応急措置*/
+	position: fixed;	/*スクロールに追従しない(固定で表示)為の設定*/
+	right: 20px;		/*右からの配置場所指定*/
+	bottom: 20px;		/*下からの配置場所指定*/
+	color: #fff;		/*文字色*/
+	font-size: 1.5rem;	/*文字サイズ*/
+	background: rgba(0,0,0,0.2);	/*背景色。0,0,0は黒の事で0.2は色が20%出た状態。*/
+	width: 60px;		/*幅*/
+	line-height: 60px;	/*高さ*/
+	border-radius: 50%;	/*円形にする*/
+}
+
+/*その他
+---------------------------------------------------------------------------*/
+.clearfix::after {content: "";display: block;clear: both;}
+.l {text-align: left !important;}
+.c {text-align: center !important;}
+.r {text-align: right !important;}
+.ws {width: 95%;display: block;}
+.wl {width: 95%;display: block;}
+.mb0 {margin-bottom: 0px !important;}
+.mb30 {margin-bottom: 30px !important;}
+.look {display: inline-block;padding: 0px 10px;background: #000;border: 1px solid #fff;border-radius: 3px;margin: 5px 0; word-break: break-all;}
+.small {font-size: 0.75em;}
+.large {font-size: 2em; letter-spacing: 0.1em;}
+.color-check, .color-check a {color: #ffcf0d;}
+.pc {display: none;}
+.dn {display: none !important;}
+.block {display: block !important;}
+
+	/*画面幅900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+
+		.ws {width: 48%;display: inline;}
+		.sh {display: none;}
+		.pc {display: block;}
+
+	}/*画面幅900px以上の追加指定ここまで*/
+
+	.filter-area {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.floating-buttons {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+.floating-buttons button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: rgba(40, 40, 40, 0.92);
+  padding: 28px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 420px;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  color: white;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.graph-content {
+  max-width: 760px;
+  width: 92%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 28px;
+  padding-top: 80px;
+}
+
+.delete-col button {
+  background: #d30c44;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.left-floating,
+.right-floating {
+  position: fixed;
+  bottom: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 999;
+}
+
+.left-floating {
+  left: 20px;
+}
+
+.right-floating {
+  right: 20px;
+  flex-direction: column;
+}
+
+.left-floating button,
+.right-floating button {
+  background: #d30c44;
+  color: white;
+  border: none;
+  padding: 14px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   section1 名言表示
+========================= */
+
+.quote-container {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100%;
+	min-height: calc(100dvh - 100px);
+	text-align: center;
+	padding-top: 18vh;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.quote-text {
+	font-size: clamp(1.5rem, 3vw, 3rem);
+	font-weight: 700;
+	line-height: 1.8;
+	max-width: 900px;
+	white-space: pre-line;
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 1.5s ease, transform 1.5s ease;
+	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.quote-text.show {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* 名言と著者をまとめる */
+.quote-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 18px;
+}
+
+/* 著者名 */
+.quote-author {
+	font-size: clamp(1rem, 1.6vw, 1.4rem);
+	font-weight: 500;
+	letter-spacing: 0.08em;
+	opacity: 0;
+	transform: translateY(15px);
+	transition: opacity 1.5s ease 0.4s, transform 1.5s ease 0.4s;
+	text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+	color: rgba(255,255,255,0.88);
+	margin: 0;
+}
+
+.quote-author.show {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.modal-buttons {
+	display: flex;
+	gap: 10px;
+	margin-top: 30px;
+}
+
+.modal-buttons button {
+	flex: 1;
+	padding: 12px;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+#summaryArea {
+	margin: 20px 0;
+	line-height: 2;
+	font-size: 15px;
+}
+
+.summary-total {
+	font-size: 22px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.category-summary {
+	margin-top: 15px;
+	padding: 15px;
+	background: rgba(255,255,255,0.08);
+	border-radius: 10px;
+}
+
+.modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+
+
+/* プロフィールページ用（最小限） */
+.profile-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.profile-table {
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.profile-table th {
+    width: 30%;
+    text-align: left;
+    background: rgba(255,255,255,0.1);
+    font-weight: 600;
+}
+
+.profile-table td {
+    text-align: left;
+}
+
+.license-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    line-height: 2;
+}
+
+/* =========================
+   筋トレページ UI改善
+========================= */
+
+/* プルダウン */
+.filter-area select,
+.modal-content select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background: rgba(0,0,0,0.3);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 10px;
+  padding: 10px 38px 10px 14px;
+  font-size: 14px;
+  min-width: 120px;
+  cursor: pointer;
+  transition: 0.25s;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, white 50%),
+    linear-gradient(135deg, white 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.filter-area select:hover,
+.modal-content select:hover {
+  border-color: rgba(255,255,255,0.35);
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* 入力欄中央寄せ */
+.form-row {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row label {
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* 成長記録プルダウン */
+.graph-content .filter-area {
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.graph-content .filter-area select {
+  min-width: 140px;
+}
+
+/* 閉じるボタン固定 */
+#graphCloseBtn {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+
+  min-width: 110px;
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 12px;
+  background: #d30c44;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* ボタン改善 */
+.primary-btn,
+.secondary-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.primary-btn {
+  background: #00c853;
+  color: white;
+}
+
+.secondary-btn {
+  background: #d30c44;
+  color: white;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+  transform: translateY(-2px);
+}
+
+.graph-content h3 {
+  margin-top: -42px;
+  margin-bottom: 25px;
+}
+
+/* 日付入力だけ少しコンパクト化 */
+#dateInput {
+  width: 180px !important;
+  margin: 0;
+  display: block;
+}
+
+/* iPhone入力時の自動ズーム防止 */
+.modal-content input,
+.modal-content select {
+  font-size: 16px !important;
+}
+
+/* =========================
+   支出管理ページ UI調整
+========================= */
+
+/* 支出分析モーダル */
+#analysisModal .graph-content {
+  max-width: 760px;
+  width: 92%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 28px;
+  padding-bottom: 40px;
+}
+
+/* 支出分析タイトル */
+#analysisModal .graph-content h3 {
+  margin-top: -42px;
+  margin-bottom: 25px;
+}
+
+/* 閉じるボタン右上固定 */
+#analysisCloseBtn {
+  position: sticky;
+  top: 12px;
+  margin-left: auto;
+  margin-right: 0;
+  display: block;
+
+  min-width: 110px;
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 12px;
+  background: #d30c44;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+
+  z-index: 30;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* 開始日・終了日 */
+#startDate,
+#endDate {
+  width: 180px !important;
+  margin: 0;
+  display: block;
+}
+
+/* 集計ボタン中央 */
+#analyzeRunBtn {
+  display: block;
+  margin: 24px auto 28px;
+  min-width: 140px;
+}
+
+/* 支出追加の入力間隔 */
+#modal .form-row {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+#modal .form-row label {
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* 支出追加ボタン余白 */
+#modal .modal-buttons {
+  margin-top: 28px;
+}
+
+/* =========================
+   Lightbox画像を正方形固定表示
+========================= */
+
+/* 画像全体を囲う枠 */
+.lightbox .lb-image {
+	width: 420px !important;
+	height: 420px !important;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 14px;
+	border: none !important;
+	box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+
+/* 外枠サイズも固定 */
+.lb-outerContainer {
+	width: 420px !important;
+	height: 420px !important;
+	border-radius: 14px;
+	background: transparent !important;
+}
+
+/* コンテナ中央寄せ */
+.lb-container {
+	padding: 0 !important;
+}
+
+/* キャプション余白調整 */
+.lb-dataContainer {
+	width: 420px !important;
+	margin: 12px auto 0;
+}
+
+/* スマホ */
+@media screen and (max-width: 768px) {
+	.lightbox .lb-image {
+		width: 82vw !important;
+		height: 82vw !important;
+		max-width: 320px;
+		max-height: 320px;
+	}
+
+	.lb-outerContainer {
+		width: 82vw !important;
+		height: 82vw !important;
+		max-width: 320px;
+		max-height: 320px;
+	}
+
+	.lb-dataContainer {
+		width: 82vw !important;
+		max-width: 320px;
+	}
+}
+
+/* =========================
+   行タップ削除のアニメーション・スタイル (追加分)
+========================= */
+
+/* テーブルの行を相対配置にし、タップ可能にする */
+#expenseTable tbody tr {
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* 削除モードONのとき、ホバー・タップ時の背景色を変更 */
+.delete-mode-active #expenseTable tbody tr:hover {
+  background: rgba(211, 12, 68, 0.15) !important;
+}
+
+/* 行の上に被せる削除用レイヤー */
+.delete-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(211, 12, 68, 0.9); /* 削除用の赤の半透明 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 10;
+}
+
+/* アクティブになったらふわっと表示 */
+.delete-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* レイヤー内の削除確定ボタン */
+.delete-confirm-btn {
+  background: #fff !important;
+  color: #d30c44 !important;
+  border: none;
+  padding: 6px 16px !important;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* キャンセルボタン */
+.delete-cancel-btn {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+  padding: 5px 12px !important;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+
+/* =========================
+   ポップアップ（モーダル）の圧迫感軽減・コンパクト調整
+========================= */
+
+/* 画面全体のオーバーレイを少し明るくマイルドに */
+.modal {
+  background: rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(2px); /* 背景を少しボカしてマイルドに */
+}
+
+/* モーダルコンテンツのサイズを抑え、マージンや角丸を優しく調整 */
+.modal-content {
+  width: 85% !important;
+  max-width: 320px !important; /* 横幅をスリムにして圧迫感を軽減 */
+  padding: 20px !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+  animation: modalScaleUp 0.2s ease-out;
+}
+
+/* ふんわり浮き出るアニメーションで視覚的ショックを和らげる */
+@keyframes modalScaleUp {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* モーダルの見出しを小さくマイルドに */
+.modal-content h3 {
+  font-size: 16px !important;
+  margin-bottom: 16px !important;
+  text-align: center;
+}
+
+/* 入力欄のサイズ調整 */
+.form-row input,
+.form-row select {
+  padding: 8px 10px !important;
+  font-size: 13px !important;
+}
+
+/* ボタンもコンパクトに */
+.modal-buttons button {
+  padding: 8px 16px !important;
+  font-size: 13px !important;
+  border-radius: 8px !important;
+}
+
+/* =========================
+   ★ 新・スワイプ＆ホバー削除機能用スタイル ★
+========================= */
+
+/* テーブル全体の親要素で横スクロールを抑制 */
+.table-wrapper {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* 各行をフレックスボックス化し、ボタンの飛び出しを隠す設定 */
+#expenseTable tbody tr {
+  position: relative;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  align-items: stretch;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* レコードがさっと消えるアニメーションクラス */
+#expenseTable tbody tr.fade-out {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+/* セル幅を均等に保ち、文字溢れを防ぐ */
+#expenseTable th, 
+#expenseTable tbody tr td {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* ヘッダーの幅をtbody trのフレックス構造と同期 */
+#expenseTable thead tr {
+  display: flex;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  min-height: 50px;
+  align-items: stretch;
+}
+
+/* ※ .swipe-delete-btnの定義は下部にある共通スタイルを使用 */
+
+/* 【PC向け】マウスホバーで行内の削除ボタンをスライドイン */
+@media screen and (min-width: 901px) {
+  #expenseTable tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  #expenseTable tbody tr:hover .swipe-delete-btn {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* 【モバイル向け】左スワイプ検知時にボタンを固定表示 */
+#expenseTable tbody tr.swiped-left .swipe-delete-btn {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* スワイプされた行の背景色を薄い赤に変更して視認性をアップ */
+#expenseTable tbody tr.swiped-left {
+	  background: rgba(211, 12, 68, 0.1);
+}
+
+
+/* 各行をフレックスボックス化し、ボタンの飛び出しを隠す設定 */
+#expenseTable tbody tr {
+  position: relative;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  align-items: stretch;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* レコードがさっと消えるアニメーションクラス */
+#expenseTable tbody tr.fade-out {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+/* セル幅を均等に保ち、文字溢れを防ぐ */
+#expenseTable th, 
+#expenseTable tbody tr td {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* ヘッダーの幅をtbody trのフレックス構造と同期 */
+#expenseTable thead tr {
+  display: flex;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+/* スライドインする動的削除ボタンの定義 */
+.swipe-delete-btn {
+  position: absolute;
+  top: 0;
+  right: -80px; /* 通常時は右側の画面外に配置 */
+  width: 80px;
+  height: 100%;
+  background: #d30c44;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.25s ease;
+  z-index: 5;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+}
+
+/* 【PC向け】マウスホバーで行内の削除ボタンをスライドイン */
+@media screen and (min-width: 901px) {
+  #expenseTable tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  #expenseTable tbody tr:hover .swipe-delete-btn {
+    right: 0;
+  }
+}
+
+/* 【モバイル向け】左スワイプ検知時にボタンを固定表示 */
+#expenseTable tbody tr.swiped-left .swipe-delete-btn {
+  right: 0;
+}
+
+/* スワイプされた行の背景色を薄い赤に変更して視認性をアップ */
+#expenseTable tbody tr.swiped-left {
+	  background: rgba(211, 12, 68, 0.1);
+}
+
+
+
+
+/* 各行をフレックスボックス化し、ボタンの飛び出しを隠す設定 */
+#trainingTable tbody tr {
+  position: relative;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  align-items: stretch;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* レコードがさっと消えるアニメーションクラス */
+#trainingTable tbody tr.fade-out {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+/* セル幅を均等に保ち、文字溢れを防ぐ */
+#trainingTable th, 
+#trainingTable tbody tr td {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* ヘッダーの幅をtbody trのフレックス構造と同期 */
+#trainingTable thead tr {
+  display: flex;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* 【PC向け】マウスホバーで行内の削除ボタンをスライドイン */
+@media screen and (min-width: 901px) {
+  #trainingTable tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  #trainingTable tbody tr:hover .swipe-delete-btn {
+    right: 0;
+  }
+}
+
+/* 【モバイル向け】左スワイプ検知時にボタンを固定表示 */
+#trainingTable tbody tr.swiped-left .swipe-delete-btn {
+  right: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  display: block;
+}
+
+/* スワイプされた行の背景色を薄い赤に変更して視認性をアップ */
+#trainingTable tbody tr.swiped-left {
+	  background: rgba(211, 12, 68, 0.1);
+}
+
+
+/* 各行をフレックスボックス化し、ボタンの飛び出しを隠す設定 */
+#trainingTable tbody tr {
+  position: relative;
+  display: flex;
+  width: 100%;
+  overflow: visible;
+  align-items: stretch;
+  min-height: 50px;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* レコードがさっと消えるアニメーションクラス */
+#trainingTable tbody tr.fade-out {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+/* セル幅を均等に保ち、文字溢れを防ぐ */
+#trainingTable th, 
+#trainingTable tbody tr td {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* ヘッダーの幅をtbody trのフレックス構造と同期 */
+#trainingTable thead tr {
+  display: flex;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  min-height: 50px;
+  align-items: stretch;
+}
+
+/* 【PC向け】マウスホバーで行内の削除ボタンをスライドイン */
+@media screen and (min-width: 901px) {
+  #trainingTable tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  #trainingTable tbody tr:hover .swipe-delete-btn {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* 【モバイル向け】左スワイプ検知時にボタンを固定表示 */
+#trainingTable tbody tr.swiped-left .swipe-delete-btn {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* スワイプされた行の背景色を薄い赤に変更して視認性をアップ */
+#trainingTable tbody tr.swiped-left {
+	  background: rgba(211, 12, 68, 0.1);
+}
+
+/* ===========================================================================
+   追加・最適化修正スタイル (他ページへの干渉なし)
+   =========================================================================== */
+
+/* テーブル行のタップ・スワイプ選択時に背景をほのかに変えてタップ感を明示 */
+#expenseTable tbody tr,
+#trainingTable tbody tr {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#expenseTable tbody tr:hover,
+#trainingTable tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ポップアップ（追加モーダル）の圧迫感軽減とデザイン最適化 */
+.modal {
+  background: rgba(0, 0, 0, 0.45) !important;
+  backdrop-filter: blur(6px) !important; /* 背景をマイルドにぼかして高級感を付与 */
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+
+.modal-content {
+  width: 90% !important;
+  max-width: 360px !important; /* 横幅をスマートにして見やすさを重視 */
+  padding: 24px !important;
+  border-radius: 16px !important;
+  background: rgba(35, 35, 35, 0.96) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* モーダルのフォーム配置の最適化 */
+.modal-content h3 {
+  font-size: 18px !important;
+  margin-bottom: 20px !important;
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+}
+
+.modal-content .form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.modal-content .form-row label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.modal-content input, 
+.modal-content select {
+  width: 100% !important;
+  padding: 10px 12px !important;
+  font-size: 14px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(0, 0, 0, 0.3) !important;
+  color: #fff !important;
+}
+
+
+
+/* 支出分析の集計内訳アイテムの調整 */
+.category-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.category-summary-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 4px;
+}
+
+/* 削除ボタンの初期配置と横からのスライドインアニメーション設定 */
+.swipe-delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  background: #d30c44 !important;
+  color: white !important;
+  border: none !important;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.25s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  opacity: 0; /* 初期状態では非表示 */
+  pointer-events: none; /* 非表示時はクリック不可 */
+}
+
+/* クラス付与時に表示 */
+#expenseTable tbody tr.swiped-left .swipe-delete-btn,
+#trainingTable tbody tr.swiped-left .swipe-delete-btn {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* スライドイン時に対象行の左側に少し余白を作る、もしくは背景色を変更して視認化 */
+#expenseTable tbody tr.swiped-left,
+#trainingTable tbody tr.swiped-left {
+  background: rgba(211, 12, 68, 0.15) !important;
+}
+
+/* テーブルの横幅が溢れた際に綺麗に横スクロールさせるラッパー */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* モバイルでの滑らかなスクロール */
+  margin-bottom: 20px;
+}
+
+/* 筋トレテーブル自体の横幅を維持し、中身の文字が潰れるのを防ぐ */
+#trainingTable {
+  min-width: 600px; /* 必要に応じて調整可能。スマートフォンの画面幅以下でもレイアウトを固定 */
+  width: 100%;
+}
+
+/* 成長記録モーダル（ポップアップ画面）のスクロール対応・圧迫感軽減 */
+#graphModal .modal-content.graph-content {
+  width: 90% !important;
+  max-width: 640px !important; /* PC・タブレットでも見やすいサイズ */
+  max-height: 85vh !important;  /* 画面全体の85%に高さを抑える */
+  overflow-y: auto !important;   /* 縦幅をはみ出た場合にスクロール可能に */
+  padding: 24px !important;
+  display: flex;
+  flex-direction: column;
+}
+
+/* グラフ表示用エリアが縮まないように保護 */
+#graphModal .graph-content div[style*="height"] {
+  min-height: 280px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* モバイルでの追加モーダルを閉じた際、フォームの自動拡大による残像を防ぐ */
+.modal-content input:focus, 
+.modal-content select:focus {
+  /* スマートフォンで入力欄が拡大されすぎるのを予防するフォントサイズ指定 */
+  font-size: 16px !important; 
+}

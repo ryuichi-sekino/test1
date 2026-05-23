@@ -249,6 +249,13 @@ function initFilters() {
   months.forEach(m => {
     monthFilter.innerHTML += `<option value="${m}">${Number(m)}月</option>`;
   });
+
+  // デフォルト値を現在年月に設定
+  const currentMonthStr = String(new Date().getMonth() + 1).padStart(2, "0");
+  // デフォルト値を現在年月に設定（既出の currentYearStr を再利用）
+  
+  if (yearFilter) yearFilter.value = currentYearStr;
+  if (monthFilter) monthFilter.value = currentMonthStr;
 }
 
 /* ===========================================================================
