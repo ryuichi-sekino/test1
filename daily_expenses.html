@@ -63,9 +63,9 @@
         <tr>
           <th>日付</th>
           <th>カテゴリ</th>
-          <th>内容</th>
           <th>金額</th>
-          <th class="delete-col hidden">削除</th>
+          <th>備考</th>
+          <!-- <th class="delete-col hidden">削除</th> -->
         </tr>
       </thead>
       <tbody></tbody>
@@ -85,9 +85,9 @@
     <i class="fa-solid fa-plus"></i> 追加
   </button>
 
-  <button id="deleteModeBtn">
+  <!-- <button id="deleteModeBtn">
     <i class="fa-solid fa-trash"></i> 削除
-  </button>
+  </button> -->
 </div>
 
 <!-- 追加モーダル -->
@@ -106,13 +106,13 @@
     </div>
 
     <div class="form-row">
-      <label>内容</label>
-      <input type="text" id="contentInput" placeholder="内容">
+      <label>金額</label>
+      <input type="number" id="amountInput" placeholder="金額">
     </div>
 
     <div class="form-row">
-      <label>金額</label>
-      <input type="number" id="amountInput" placeholder="金額">
+      <label>備考</label>
+      <input type="text" id="contentInput" placeholder="内容">
     </div>
 
     <div class="modal-buttons">
@@ -128,7 +128,7 @@
 
     <button id="analysisCloseBtn" class="secondary-btn">閉じる</button>
 
-    <h3>支出分析</h3>
+    <!-- <h3>支出分析</h3> --><br>
 
     <label>開始日</label>
     <input type="date" id="startDate">

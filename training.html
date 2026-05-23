@@ -15,39 +15,42 @@
 <body>
 
 <header>
-  <h2>Ryuichi Sekino</h2>
 
-  <div id="menubar">
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="memory.html">Memory</a></li>
-      </ul>
-    </nav>
+<!-- <h1 id="logo"><img src="images/logo.png" alt="Artist Web Site"><span>Ryuichi</span></h1> -->
+<h2>Ryuichi Sekino</h2>
 
-    <ul class="icons">
-      <li><a href="https://line.me/ti/p/kKjSzzldcK"><i class="fab fa-line"></i></a></li>
-      <li><a href="https://www.instagram.com/riyuichi66"><i class="fab fa-instagram"></i></a></li>
-      <li><a href="https://x.com/ryuichi_se"><i class="fa-brands fa-x-twitter"></i></a></li>
-      <li><a href="https://youtube.com/channel/UCuIGTqvoOdshTMILa3l058w"><i class="fab fa-youtube"></i></a></li>
-    </ul>
-  </div>
-</header>
+<!--開閉ブロック-->
+<div id="menubar">
+
+<nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="memory.html">Memory</a></li>
+            </ul>
+</nav>
+
+<ul class="icons">
+<li><a href="https://line.me/ti/p/kKjSzzldcK"><i class="fab fa-line"></i></a></li>
+<li><a href="https://www.instagram.com/riyuichi66?igsh=c2RzZzZuOTkya29m&utm_source=qr"><i class="fab fa-instagram"></i></a></li>
+<li><a href="https://x.com/ryuichi_se?s=21"><i class="fa-brands fa-x-twitter"></i></a></li>
+<li><a href="https://youtube.com/channel/UCuIGTqvoOdshTMILa3l058w?si=1QKPY9zSFsyXlTSW"><i class="fab fa-youtube"></i></a></li>
+
+</ul>
+
+</div> 
+<!-- /#menubar -->
+
+</header> 
 
 <main>
 <section id="section2">
   <h2>Training Records</h2>
 
+  <!-- フィルターエリア -->
   <div class="filter-area">
-    <select id="yearFilter">
-      <option value="">全年</option>
-    </select>
-
-    <select id="monthFilter">
-      <option value="">全月</option>
-    </select>
-
+    <select id="yearFilter"></select>
+    <select id="monthFilter"></select>
     <select id="partFilter">
       <option value="">全部位</option>
       <option value="胸">胸</option>
@@ -55,14 +58,14 @@
       <option value="腕">腕</option>
       <option value="背中">背中</option>
     </select>
-
     <select id="menuFilter">
       <option value="">全種目</option>
     </select>
   </div>
 
+  <!-- レコード表示テーブル (横スクロール抑制・共通比率のラッパー) -->
   <div class="table-wrapper">
-    <table id="recordTable">
+    <table id="trainingTable">
       <thead>
         <tr>
           <th>日付</th>
@@ -70,38 +73,30 @@
           <th>種目</th>
           <th>重量</th>
           <th>回数</th>
-          <th>1RM</th>
-          <th class="delete-col hidden">削除</th>
+          <th>RM</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        <!-- JSで動的に追加 -->
+      </tbody>
     </table>
   </div>
 </section>
 </main>
 
-<!-- 左下 -->
+<!-- フローティングアクションボタン（画面固定配置） -->
 <div class="left-floating">
-  <button id="graphBtn">
-    <i class="fa-solid fa-chart-line"></i> 成長記録
-  </button>
+  <button id="graphBtn"><i class="fas fa-chart-line"></i> 成長記録</button>
 </div>
 
-<!-- 右下 -->
 <div class="right-floating">
-  <button id="addBtn">
-    <i class="fa-solid fa-plus"></i> 追加
-  </button>
-
-  <button id="deleteModeBtn">
-    <i class="fa-solid fa-trash"></i> 削除
-  </button>
+  <button id="addBtn"><i class="fas fa-plus"></i> 追加</button>
 </div>
 
 <!-- 記録追加モーダル -->
 <div id="modal" class="modal hidden">
   <div class="modal-content">
-    <h3>記録追加</h3>
+    <h3>筋トレ記録を追加</h3>
 
     <div class="form-row">
       <label>日付</label>
@@ -143,7 +138,8 @@
 <!-- 成長記録モーダル -->
 <div id="graphModal" class="modal hidden">
   <div class="modal-content graph-content">
-    <h3>成長記録 RM推移</h3>
+    <button id="graphCloseBtn" >閉じる</button>
+    <!-- <h3>成長記録 RM推移</h3> --><br><br>
 
     <div class="filter-area">
       <select id="graphYear"></select>
@@ -155,8 +151,6 @@
     <div style="height:300px;">
       <canvas id="growthChart"></canvas>
     </div>
-
-    <button id="graphCloseBtn" class="secondary-btn">閉じる</button>
   </div>
 </div>
 
@@ -168,9 +162,10 @@
   <span></span><span></span><span></span>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
-
+<!-- スクリプトファイルの読み込み -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="js/openclose.js"></script>
+<script src="js/lightbox-plus-jquery.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/training.js"></script>
 

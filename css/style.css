@@ -30,7 +30,6 @@
 }
 
 
-
 /*全体の設定
 ---------------------------------------------------------------------------*/
 body * {box-sizing: border-box;}
@@ -1073,4 +1072,574 @@ th, td {
 		width: 82vw !important;
 		max-width: 320px;
 	}
+}
+
+/* =========================
+   行タップ削除のアニメーション・スタイル (追加分)
+========================= */
+
+/* テーブルの行を相対配置にし、タップ可能にする */
+#expenseTable tbody tr {
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* 削除モードONのとき、ホバー・タップ時の背景色を変更 */
+.delete-mode-active #expenseTable tbody tr:hover {
+  background: rgba(211, 12, 68, 0.15) !important;
+}
+
+/* 行の上に被せる削除用レイヤー */
+.delete-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(211, 12, 68, 0.9); /* 削除用の赤の半透明 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 10;
+}
+
+/* アクティブになったらふわっと表示 */
+.delete-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* レイヤー内の削除確定ボタン */
+.delete-confirm-btn {
+  background: #fff !important;
+  color: #d30c44 !important;
+  border: none;
+  padding: 6px 16px !important;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* キャンセルボタン */
+.delete-cancel-btn {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+  padding: 5px 12px !important;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+
+/* =========================
+   ポップアップ（モーダル）の圧迫感軽減・コンパクト調整
+========================= */
+
+/* 画面全体のオーバーレイを少し明るくマイルドに */
+.modal {
+  background: rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(2px); /* 背景を少しボカしてマイルドに */
+}
+
+/* モーダルコンテンツのサイズを抑え、マージンや角丸を優しく調整 */
+.modal-content {
+  width: 85% !important;
+  max-width: 320px !important; /* 横幅をスリムにして圧迫感を軽減 */
+  padding: 20px !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+  animation: modalScaleUp 0.2s ease-out;
+}
+
+/* ふんわり浮き出るアニメーションで視覚的ショックを和らげる */
+@keyframes modalScaleUp {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* モーダルの見出しを小さくマイルドに */
+.modal-content h3 {
+  font-size: 16px !important;
+  margin-bottom: 16px !important;
+  text-align: center;
+}
+
+/* 入力欄のサイズ調整 */
+.form-row input,
+.form-row select {
+  padding: 8px 10px !important;
+  font-size: 13px !important;
+}
+
+/* ボタンもコンパクトに */
+.modal-buttons button {
+  padding: 8px 16px !important;
+  font-size: 13px !important;
+  border-radius: 8px !important;
+}
+
+/* =========================
+   ★ 新・スワイプ＆ホバー削除機能用スタイル ★
+========================= */
+
+/* テーブル全体の親要素で横スクロールを抑制 */
+.table-wrapper {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* 各行をフレックスボックス化し、ボタンの飛び出しを隠す設定 */
+#expenseTable tbody tr {
+  position: relative;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  align-items: stretch;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* レコードがさっと消えるアニメーションクラス */
+#expenseTable tbody tr.fade-out {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+/* セル幅を均等に保ち、文字溢れを防ぐ */
+#expenseTable th, 
+#expenseTable tbody tr td {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* ヘッダーの幅をtbody trのフレックス構造と同期 */
+#expenseTable thead tr {
+  display: flex;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* スライドインする動的削除ボタンの定義 */
+.swipe-delete-btn {
+  position: absolute;
+  top: 0;
+  right: -80px; /* 通常時は右側の画面外に配置 */
+  width: 80px;
+  height: 100%;
+  background: #d30c44;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.25s ease;
+  z-index: 5;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+}
+
+/* 【PC向け】マウスホバーで行内の削除ボタンをスライドイン */
+@media screen and (min-width: 901px) {
+  #expenseTable tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  #expenseTable tbody tr:hover .swipe-delete-btn {
+    right: 0;
+  }
+}
+
+/* 【モバイル向け】左スワイプ検知時にボタンを固定表示 */
+#expenseTable tbody tr.swiped-left .swipe-delete-btn {
+  right: 0;
+}
+
+/* スワイプされた行の背景色を薄い赤に変更して視認性をアップ */
+#expenseTable tbody tr.swiped-left {
+	  background: rgba(211, 12, 68, 0.1);
+}
+
+
+/* 各行をフレックスボックス化し、ボタンの飛び出しを隠す設定 */
+#expenseTable tbody tr {
+  position: relative;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  align-items: stretch;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* レコードがさっと消えるアニメーションクラス */
+#expenseTable tbody tr.fade-out {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+/* セル幅を均等に保ち、文字溢れを防ぐ */
+#expenseTable th, 
+#expenseTable tbody tr td {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* ヘッダーの幅をtbody trのフレックス構造と同期 */
+#expenseTable thead tr {
+  display: flex;
+  width: 100%;
+  background: rgba(119, 253, 2, 0.246);
+}
+
+/* スライドインする動的削除ボタンの定義 */
+.swipe-delete-btn {
+  position: absolute;
+  top: 0;
+  right: -80px; /* 通常時は右側の画面外に配置 */
+  width: 80px;
+  height: 100%;
+  background: #d30c44;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.25s ease;
+  z-index: 5;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+}
+
+/* 【PC向け】マウスホバーで行内の削除ボタンをスライドイン */
+@media screen and (min-width: 901px) {
+  #expenseTable tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  #expenseTable tbody tr:hover .swipe-delete-btn {
+    right: 0;
+  }
+}
+
+/* 【モバイル向け】左スワイプ検知時にボタンを固定表示 */
+#expenseTable tbody tr.swiped-left .swipe-delete-btn {
+  right: 0;
+}
+
+/* スワイプされた行の背景色を薄い赤に変更して視認性をアップ */
+#expenseTable tbody tr.swiped-left {
+	  background: rgba(211, 12, 68, 0.1);
+}
+
+
+
+
+/* 各行をフレックスボックス化し、ボタンの飛び出しを隠す設定 */
+#trainingTable tbody tr {
+  position: relative;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  align-items: stretch;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* レコードがさっと消えるアニメーションクラス */
+#trainingTable tbody tr.fade-out {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+/* セル幅を均等に保ち、文字溢れを防ぐ */
+#trainingTable th, 
+#trainingTable tbody tr td {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* ヘッダーの幅をtbody trのフレックス構造と同期 */
+#trainingTable thead tr {
+  display: flex;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* 【PC向け】マウスホバーで行内の削除ボタンをスライドイン */
+@media screen and (min-width: 901px) {
+  #trainingTable tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  #trainingTable tbody tr:hover .swipe-delete-btn {
+    right: 0;
+  }
+}
+
+/* 【モバイル向け】左スワイプ検知時にボタンを固定表示 */
+#trainingTable tbody tr.swiped-left .swipe-delete-btn {
+  right: 0;
+}
+
+/* スワイプされた行の背景色を薄い赤に変更して視認性をアップ */
+#trainingTable tbody tr.swiped-left {
+	  background: rgba(211, 12, 68, 0.1);
+}
+
+
+/* 各行をフレックスボックス化し、ボタンの飛び出しを隠す設定 */
+#trainingTable tbody tr {
+  position: relative;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  align-items: stretch;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* レコードがさっと消えるアニメーションクラス */
+#trainingTable tbody tr.fade-out {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+/* セル幅を均等に保ち、文字溢れを防ぐ */
+#trainingTable th, 
+#trainingTable tbody tr td {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* ヘッダーの幅をtbody trのフレックス構造と同期 */
+#trainingTable thead tr {
+  display: flex;
+  width: 100%;
+  background: rgba(119, 253, 2, 0.246);
+}
+
+/* 【PC向け】マウスホバーで行内の削除ボタンをスライドイン */
+@media screen and (min-width: 901px) {
+  #trainingTable tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  #trainingTable tbody tr:hover .swipe-delete-btn {
+    right: 0;
+  }
+}
+
+/* 【モバイル向け】左スワイプ検知時にボタンを固定表示 */
+#trainingTable tbody tr.swiped-left .swipe-delete-btn {
+  right: 0;
+}
+
+/* スワイプされた行の背景色を薄い赤に変更して視認性をアップ */
+#trainingTable tbody tr.swiped-left {
+	  background: rgba(211, 12, 68, 0.1);
+}
+
+/* ===========================================================================
+   追加・最適化修正スタイル (他ページへの干渉なし)
+   =========================================================================== */
+
+/* テーブル行のタップ・スワイプ選択時に背景をほのかに変えてタップ感を明示 */
+#expenseTable tbody tr,
+#trainingTable tbody tr {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#expenseTable tbody tr:hover,
+#trainingTable tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ポップアップ（追加モーダル）の圧迫感軽減とデザイン最適化 */
+.modal {
+  background: rgba(0, 0, 0, 0.45) !important;
+  backdrop-filter: blur(6px) !important; /* 背景をマイルドにぼかして高級感を付与 */
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+
+.modal-content {
+  width: 90% !important;
+  max-width: 360px !important; /* 横幅をスマートにして見やすさを重視 */
+  padding: 24px !important;
+  border-radius: 16px !important;
+  background: rgba(35, 35, 35, 0.96) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* モーダルのフォーム配置の最適化 */
+.modal-content h3 {
+  font-size: 18px !important;
+  margin-bottom: 20px !important;
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+}
+
+.modal-content .form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.modal-content .form-row label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.modal-content input, 
+.modal-content select {
+  width: 100% !important;
+  padding: 10px 12px !important;
+  font-size: 14px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(0, 0, 0, 0.3) !important;
+  color: #fff !important;
+}
+
+
+
+/* 支出分析の集計内訳アイテムの調整 */
+.category-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.category-summary-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 4px;
+}
+
+/* 削除ボタンの初期配置と横からのスライドインアニメーション設定 */
+.swipe-delete-btn {
+  position: absolute;
+  top: 0;
+  right: -80px; /* 初期状態は画面外に隠蔽 */
+  width: 80px;
+  height: 100%;
+  background: #d30c44 !important;
+  color: white !important;
+  border: none !important;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: right 0.25s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* クラス付与時に右からシュッと出現 */
+#expenseTable tbody tr.swiped-left .swipe-delete-btn,
+#trainingTable tbody tr.swiped-left .swipe-delete-btn {
+  right: 0px !important;
+}
+
+/* スライドイン時に対象行の左側に少し余白を作る、もしくは背景色を変更して視認化 */
+#expenseTable tbody tr.swiped-left,
+#trainingTable tbody tr.swiped-left {
+  background: rgba(211, 12, 68, 0.15) !important;
+}
+
+/* テーブルの横幅が溢れた際に綺麗に横スクロールさせるラッパー */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* モバイルでの滑らかなスクロール */
+  margin-bottom: 20px;
+}
+
+/* 筋トレテーブル自体の横幅を維持し、中身の文字が潰れるのを防ぐ */
+#trainingTable {
+  min-width: 600px; /* 必要に応じて調整可能。スマートフォンの画面幅以下でもレイアウトを固定 */
+  width: 100%;
+}
+
+/* 成長記録モーダル（ポップアップ画面）のスクロール対応・圧迫感軽減 */
+#graphModal .modal-content.graph-content {
+  width: 90% !important;
+  max-width: 640px !important; /* PC・タブレットでも見やすいサイズ */
+  max-height: 85vh !important;  /* 画面全体の85%に高さを抑える */
+  overflow-y: auto !important;   /* 縦幅をはみ出た場合にスクロール可能に */
+  padding: 24px !important;
+  display: flex;
+  flex-direction: column;
+}
+
+/* グラフ表示用エリアが縮まないように保護 */
+#graphModal .graph-content div[style*="height"] {
+  min-height: 280px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* モバイルでの追加モーダルを閉じた際、フォームの自動拡大による残像を防ぐ */
+.modal-content input:focus, 
+.modal-content select:focus {
+  /* スマートフォンで入力欄が拡大されすぎるのを予防するフォントサイズ指定 */
+  font-size: 16px !important; 
 }
