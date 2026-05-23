@@ -1055,22 +1055,22 @@ th, td {
 /* スマホ */
 @media screen and (max-width: 768px) {
 	.lightbox .lb-image {
-		width: 82vw !important;
+		width: 85vw !important;
 		height: 82vw !important;
-		max-width: 320px;
+		max-width: 350px;
 		max-height: 320px;
 	}
 
 	.lb-outerContainer {
-		width: 82vw !important;
+		width: 85vw !important;
 		height: 82vw !important;
-		max-width: 320px;
+		max-width: 350px;
 		max-height: 320px;
 	}
 
 	.lb-dataContainer {
-		width: 82vw !important;
-		max-width: 320px;
+		width: 85vw !important;
+		max-width: 350px;
 	}
 }
 
@@ -1239,28 +1239,14 @@ th, td {
   display: flex;
   width: 100%;
   background: rgba(0, 0, 0, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  min-height: 50px;
+  align-items: stretch;
 }
 
-/* スライドインする動的削除ボタンの定義 */
-.swipe-delete-btn {
-  position: absolute;
-  top: 0;
-  right: -80px; /* 通常時は右側の画面外に配置 */
-  width: 80px;
-  height: 100%;
-  background: #d30c44;
-  color: #fff;
-  border: none;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: right 0.25s ease;
-  z-index: 5;
-  box-shadow: -2px 0 5px rgba(0,0,0,0.2);
-}
+/* ※ .swipe-delete-btnの定義は下部にある共通スタイルを使用 */
 
 /* 【PC向け】マウスホバーで行内の削除ボタンをスライドイン */
 @media screen and (min-width: 901px) {
@@ -1268,13 +1254,15 @@ th, td {
     background: rgba(255, 255, 255, 0.05);
   }
   #expenseTable tbody tr:hover .swipe-delete-btn {
-    right: 0;
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 }
 
 /* 【モバイル向け】左スワイプ検知時にボタンを固定表示 */
 #expenseTable tbody tr.swiped-left .swipe-delete-btn {
-  right: 0;
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
 /* スワイプされた行の背景色を薄い赤に変更して視認性をアップ */
@@ -1319,7 +1307,10 @@ th, td {
 #expenseTable thead tr {
   display: flex;
   width: 100%;
-  background: rgba(119, 253, 2, 0.246);
+  background: rgba(0, 0, 0, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 
 /* スライドインする動的削除ボタンの定義 */
@@ -1418,6 +1409,10 @@ th, td {
 /* 【モバイル向け】左スワイプ検知時にボタンを固定表示 */
 #trainingTable tbody tr.swiped-left .swipe-delete-btn {
   right: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  display: block;
 }
 
 /* スワイプされた行の背景色を薄い赤に変更して視認性をアップ */
@@ -1431,8 +1426,9 @@ th, td {
   position: relative;
   display: flex;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
   align-items: stretch;
+  min-height: 50px;
   transition: transform 0.2s ease, opacity 0.3s ease;
   border-bottom: 1px solid rgba(255,255,255,0.5);
   background: rgba(0, 0, 0, 0.3);
@@ -1462,7 +1458,12 @@ th, td {
 #trainingTable thead tr {
   display: flex;
   width: 100%;
-  background: rgba(119, 253, 2, 0.246);
+  background: rgba(0, 0, 0, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  min-height: 50px;
+  align-items: stretch;
 }
 
 /* 【PC向け】マウスホバーで行内の削除ボタンをスライドイン */
@@ -1471,13 +1472,15 @@ th, td {
     background: rgba(255, 255, 255, 0.05);
   }
   #trainingTable tbody tr:hover .swipe-delete-btn {
-    right: 0;
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 }
 
 /* 【モバイル向け】左スワイプ検知時にボタンを固定表示 */
 #trainingTable tbody tr.swiped-left .swipe-delete-btn {
-  right: 0;
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
 /* スワイプされた行の背景色を薄い赤に変更して視認性をアップ */
@@ -1577,7 +1580,7 @@ th, td {
 .swipe-delete-btn {
   position: absolute;
   top: 0;
-  right: -80px; /* 初期状態は画面外に隠蔽 */
+  right: 0;
   width: 80px;
   height: 100%;
   background: #d30c44 !important;
@@ -1586,17 +1589,20 @@ th, td {
   font-weight: bold;
   font-size: 14px;
   cursor: pointer;
-  transition: right 0.25s ease-out;
+  transition: opacity 0.25s ease-out;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
+  opacity: 0; /* 初期状態では非表示 */
+  pointer-events: none; /* 非表示時はクリック不可 */
 }
 
-/* クラス付与時に右からシュッと出現 */
+/* クラス付与時に表示 */
 #expenseTable tbody tr.swiped-left .swipe-delete-btn,
 #trainingTable tbody tr.swiped-left .swipe-delete-btn {
-  right: 0px !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
 /* スライドイン時に対象行の左側に少し余白を作る、もしくは背景色を変更して視認化 */
@@ -1642,4 +1648,23 @@ th, td {
 .modal-content select:focus {
   /* スマートフォンで入力欄が拡大されすぎるのを予防するフォントサイズ指定 */
   font-size: 16px !important; 
+}
+
+/* --- ポップアップ内のiframe共通設定 --- */
+.popup-iframe {
+    width: 100% !important;   /* 親要素（ポップアップ）の幅いっぱいに広げる */
+    max-width: 500px;         /* PCなどの大画面でも大きくなりすぎない限界値 */
+    height: auto;             /* 高さはアスペクト比に任せる */
+    aspect-ratio: 16 / 9;     /* YouTubeやマップを綺麗な16:9の比率にする */
+    border: none;             /* 枠線を消す */
+    border-radius: 8px;       /* 角を少し丸くして今風のデザインに */
+    display: block;           /* 前後の文字と被らないようにブロック化 */
+    margin: 10px 0;           /* 上下に少し余白を作る */
+}
+
+/* --- Apple Music専用の個別調整 --- */
+.popup-iframe.music-player {
+    aspect-ratio: auto;       /* 音楽プレイヤーは16:9にしない */
+    height: 300px;            /* プレイヤーが見やすい最適な高さに固定 */
+    border-radius: 10px;      /* アップル公式に近い丸みに調整 */
 }
