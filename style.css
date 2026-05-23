@@ -1055,22 +1055,22 @@ th, td {
 /* スマホ */
 @media screen and (max-width: 768px) {
 	.lightbox .lb-image {
-		width: 82vw !important;
+		width: 85vw !important;
 		height: 82vw !important;
-		max-width: 320px;
+		max-width: 350px;
 		max-height: 320px;
 	}
 
 	.lb-outerContainer {
-		width: 82vw !important;
+		width: 85vw !important;
 		height: 82vw !important;
-		max-width: 320px;
+		max-width: 350px;
 		max-height: 320px;
 	}
 
 	.lb-dataContainer {
-		width: 82vw !important;
-		max-width: 320px;
+		width: 85vw !important;
+		max-width: 350px;
 	}
 }
 
@@ -1648,4 +1648,23 @@ th, td {
 .modal-content select:focus {
   /* スマートフォンで入力欄が拡大されすぎるのを予防するフォントサイズ指定 */
   font-size: 16px !important; 
+}
+
+/* --- ポップアップ内のiframe共通設定 --- */
+.popup-iframe {
+    width: 100% !important;   /* 親要素（ポップアップ）の幅いっぱいに広げる */
+    max-width: 500px;         /* PCなどの大画面でも大きくなりすぎない限界値 */
+    height: auto;             /* 高さはアスペクト比に任せる */
+    aspect-ratio: 16 / 9;     /* YouTubeやマップを綺麗な16:9の比率にする */
+    border: none;             /* 枠線を消す */
+    border-radius: 8px;       /* 角を少し丸くして今風のデザインに */
+    display: block;           /* 前後の文字と被らないようにブロック化 */
+    margin: 10px 0;           /* 上下に少し余白を作る */
+}
+
+/* --- Apple Music専用の個別調整 --- */
+.popup-iframe.music-player {
+    aspect-ratio: auto;       /* 音楽プレイヤーは16:9にしない */
+    height: 300px;            /* プレイヤーが見やすい最適な高さに固定 */
+    border-radius: 10px;      /* アップル公式に近い丸みに調整 */
 }
